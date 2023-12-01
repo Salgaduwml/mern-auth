@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -32,6 +34,7 @@ export default function SignUp() {
       if (res.ok) {
         console.log(data);
         setLoading(false);
+        navigate("/");
       } else {
         setError(true);
         setLoading(false);
